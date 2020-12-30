@@ -1,0 +1,12 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <form method="post" action="{% url 'new_post' %}">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="post"></label>
+    <textarea class="form-control" name="post" id="post"  placeholder="{% lorem 5 w random %}" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Post</button>
+</form>
+{% endblock %}

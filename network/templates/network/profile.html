@@ -1,0 +1,52 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+<div class="tweets-container">
+<div class="card">
+  <div class="card-header">
+      <h2 id="target" >{{profile.username}}</h2>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      Following: <span id="following">{{following}}</span>
+      Followers: <span id="follower">{{follower}}</span>
+      {% if user.is_authenticated and user.username != profile.username %}
+        {% if status %}
+          <button value="{{status}}" style="float: right;" id="folunfol" class="btn btn-primary" >Unfollow</button>
+        {% else %}
+          <button value="{{status}}" style="float: right;" id="folunfol" class="btn btn-primary" >Follow</button>
+        {% endif %}
+      {% endif %}
+    </blockquote>
+  </div>
+</div>
+
+  <div class="card tweets-header">
+    Tweets
+  </div>
+{% for post in posts %}
+  <div class="card tweet">
+    <a href="/profile/{{post.user}}" class="author">
+      <span class="name"><strong>{{post.user}}</strong></span>
+    </a>
+    <div class="content-{{post.id}}">
+      {{post.post}}
+    </div>
+      <textarea style="display: none;" class="textarea-{{post.id}}" cols="40" rows="3">{{post.post}}</textarea>
+      <div class="date-{{post.id}}">
+        <span>{{post.date}}</span>
+      </div>
+      {% if user.username == post.user.username %}
+        <button style="width: 42px; border: none;" value="{{post.id}}" class="edit">edit</button>
+      {% endif %}
+    <span class="actions" value={{post.id}}>
+      {% if user in post.liked.all %}
+      <span id="actions-{{post.id}}" style="color: #b33;" class="fa fa-heart"> {{post.liked.all.count}}</span>
+    </span>
+    {% else %}
+    <span id="actions-{{post.id}}" class="fa fa-heart"> {{post.liked.all.count}}</span>
+    {% endif %}
+  </div>
+    {% endfor %}
+{% endblock %}

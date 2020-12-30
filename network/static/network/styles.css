@@ -1,0 +1,120 @@
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #B33;
+}
+
+a:hover .name {
+  text-decoration: underline;
+}
+
+p {
+  margin-top: 0;
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.card.summary {
+  padding: 0;
+}
+
+.card.summary > .background {
+  display: block;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.card.summary > .information {
+  color: #333;
+  border-top: 1px solid #eee;
+  padding: 8px 12px;
+}
+
+.card.summary > .information > .title {
+  font-weight: bold;
+}
+
+.card.summary > .information > div:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.card.summary .domain {
+  color: #888;
+}
+
+.tweets-container {
+  margin: auto;
+  max-width: 600px;
+}
+
+.tweets-header {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: -1px;
+}
+
+.tweets-container > .tweet:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.tweet {
+  position: relative;
+  border-radius: 0;
+  padding-left: 72px;
+  margin-bottom: -1px;
+}
+
+.tweet > .author > .avatar {
+  position: absolute;
+  border-radius: 4px;
+  top: 12px;
+  left: 12px;
+  width: 48px;
+  height: 48px;
+}
+
+.tweet > .author > .name {
+  font-weight: bold;
+}
+
+.tweet > .author > .username {
+  color: #888;
+}
+
+.tweet > .actions > .fa {
+  color: #888;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 12px;
+  margin-right: 36px;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center !important;
+  padding: 20px;
+}
+
+.textarea {
+  display: none;
+}

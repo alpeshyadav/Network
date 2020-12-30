@@ -1,0 +1,51 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+  <div class="tweets-container">
+  <div class="card tweets-header">
+    Tweets
+  </div>
+{% for post in page_obj %}
+<div class="card tweet">
+  <a href="/profile/{{post.user}}" class="author">
+    <span class="name"><strong>{{post.user}}</strong></span>
+  </a>
+  <div class="content-{{post.id}}">
+    {{post.post}}
+  </div>
+  {% if user.username == post.user.username %}
+      <textarea style="display: none;" class="textarea-{{post.id}}" cols="40" rows="3">{{post.post}}</textarea>
+    {% endif %}
+    <div class="date-{{post.id}}">
+      <span>{{post.date}}</span>
+    </div>
+    {% if user.username == post.user.username %}
+      <button style="width: 42px; border: none;" value="{{post.id}}" class="edit">edit</button>
+    {% endif %}
+    <span class="actions" value={{post.id}}>
+      {% if user in post.liked.all %}
+      <span id="actions-{{post.id}}" style="color: #b33;" class="fa fa-heart"> {{post.liked.all.count}}</span>
+    </span>
+    {% else %}
+    <span id="actions-{{post.id}}" class="fa fa-heart"> {{post.liked.all.count}}</span>
+    {% endif %}
+</div>
+    {% endfor %}
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
